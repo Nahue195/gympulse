@@ -36,3 +36,18 @@ screenshots/
 
 # Old subfolder (legacy)
 gym-pulse/
+
+# Dev/setup scripts (one-time migrations, not needed in repo)
+*.sql
+CAMBIOS_REALIZADOS.md
+COMMUNITY_SETUP.md
+FIX_AUTHENTICATION.md
+INSTRUCCIONES_SETUP_SQL.md
+MEJORAS_UI_MODALES.md
+ROUTINES_NEW_STRUCTURE.md
+ROUTINES_SETUP.md
+SETUP_FINAL_RUTINAS.md
+SOLUCIONAR_CACHE_CSS.md
+SUPABASE_EMAIL_CONFIG.md
+SUPABASE_SETUP.md
+TAILWIND_MIGRATION.md
