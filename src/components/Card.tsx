@@ -5,30 +5,31 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   hover?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  accent?: boolean;
 }
 
 export function Card({
   children,
   hover = false,
   padding = 'md',
+  accent = false,
   className,
   ...props
 }: CardProps) {
-  const baseClasses = 'bg-slate-800 rounded-lg shadow-md transition-all';
-
-  const paddingClasses = {
-    none: 'p-0',
-    sm: 'p-3',
-    md: 'p-4',
-    lg: 'p-6',
+  const paddings = {
+    none: '',
+    sm:   'p-3',
+    md:   'p-4',
+    lg:   'p-6',
   };
 
   return (
     <div
       className={clsx(
-        baseClasses,
-        paddingClasses[padding],
-        hover && 'cursor-pointer hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-md',
+        'gp-card transition-all duration-150',
+        paddings[padding],
+        hover && 'cursor-pointer hover:-translate-y-0.5 hover:border-[var(--border-2)]',
+        accent && 'border-l-2 border-l-[var(--acid)]',
         className
       )}
       {...props}

@@ -1,10 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Reset básico */
+:root {
+  --base:        #07070A;
+  --surface:     #0e0e14;
+  --surface-2:   #141419;
+  --surface-3:   #1a1a21;
+  --border:      #1e1e28;
+  --border-2:    #2c2c3a;
+  --acid:        #CCFF00;
+  --acid-dim:    rgba(204, 255, 0, 0.07);
+  --acid-glow:   rgba(204, 255, 0, 0.18);
+  --acid-text:   #B8E600;
+  --fire:        #FF4419;
+  --fire-dim:    rgba(255, 68, 25, 0.1);
+  --ink:         #EEEEF2;
+  --ink-2:       #7A7A8E;
+  --ink-3:       #3A3A4C;
+  --radius:      2px;
+  --sidebar-w:   220px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,22 +38,17 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
-  color: rgb(248, 250, 252);
-  background-color: rgb(11, 15, 20);
+  color: var(--ink);
+  background-color: var(--base);
   min-height: 100vh;
-  /* Safe area para iOS */
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-}
-
-/* Clase utility para safe area padding bottom */
-.safe-area-pb {
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 #root {
@@ -42,51 +56,147 @@ body {
   min-height: 100vh;
 }
 
-/* Animaciones para Tailwind */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ─── Typography helpers ─────────────────────────────── */
+
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.font-condensed {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* Tabular numbers for stats */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ─── Selection ───────────────────────────────────────── */
+
+::selection {
+  background: var(--acid);
+  color: #000;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────── */
+
+::-webkit-scrollbar       { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* ─── Shared component primitives ────────────────────── */
+
+.gp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.gp-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.9375rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.gp-input::placeholder { color: var(--ink-3); }
+.gp-input:focus {
+  outline: none;
+  border-color: var(--acid);
+  box-shadow: 0 0 0 3px var(--acid-dim);
+}
+.gp-input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Keyframes ───────────────────────────────────────── */
+
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes heartBeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+  0%, 100% { transform: scale(1); }
+  25%       { transform: scale(1.2); }
+  50%       { transform: scale(1.1); }
 }
 
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
 }
 
-::-webkit-scrollbar-track {
-  background: rgb(15, 23, 42);
-  border-radius: 5px;
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80%      { transform: translateX(4px); }
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(51, 65, 85);
-  border-radius: 5px;
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(71, 85, 105);
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes acidPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--acid-glow); }
+  50%       { box-shadow: 0 0 12px 3px var(--acid-glow); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Tailwind animation utilities ───────────────────── */
+
+@layer utilities {
+  .animate-fadeIn      { animation: fadeIn 0.2s ease both; }
+  .animate-slideUp     { animation: slideUp 0.28s ease both; }
+  .animate-slideDown   { animation: slideDown 0.22s ease both; }
+  .animate-slideInRight{ animation: slideInRight 0.25s ease both; }
+  .animate-scaleIn     { animation: scaleIn 0.2s ease both; }
+  .animate-shimmer     { animation: shimmer 1.4s linear infinite; }
+  .animate-shake       { animation: shake 0.45s ease-in-out; }
+  .animate-pulse-slow  { animation: pulse 2s ease infinite; }
+  .animate-bounce-sm   { animation: bounce 0.5s ease; }
+  .animate-acidPulse   { animation: acidPulse 2s ease infinite; }
+  .animate-heartBeat   { animation: heartBeat 0.4s ease; }
 }

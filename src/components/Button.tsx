@@ -19,37 +19,57 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all whitespace-nowrap relative';
+  const base =
+    'inline-flex items-center justify-center gap-2 font-condensed font-700 tracking-widest uppercase whitespace-nowrap transition-all duration-150 relative select-none';
 
-  const sizeClasses = {
-    sm: 'px-3 py-2 text-sm',
-    md: 'px-5 py-3 text-base',
-    lg: 'px-6 py-4 text-lg',
+  const sizes = {
+    sm: 'px-4 py-1.5 text-sm',
+    md: 'px-5 py-2.5 text-sm',
+    lg: 'px-7 py-3.5 text-base',
   };
 
-  const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 hover:-translate-y-0.5 hover:shadow-md disabled:hover:translate-y-0 disabled:hover:shadow-none',
-    secondary: 'bg-slate-800 text-white border border-slate-700 hover:bg-slate-700 hover:border-slate-600 hover:-translate-y-0.5 disabled:hover:translate-y-0',
-    ghost: 'bg-transparent text-slate-400 hover:bg-white/5 hover:text-white',
-    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 hover:-translate-y-0.5 hover:shadow-md disabled:hover:translate-y-0 disabled:hover:shadow-none',
+  const variants = {
+    primary: [
+      'bg-acid text-black rounded-sm',
+      'hover:bg-[#D8FF1A] hover:-translate-y-px active:translate-y-0',
+      'disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:bg-acid',
+    ].join(' '),
+
+    secondary: [
+      'bg-transparent text-ink border border-[var(--border-2)] rounded-sm',
+      'hover:border-[var(--acid)] hover:text-acid hover:-translate-y-px',
+      'active:translate-y-0',
+      'disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:border-[var(--border-2)] disabled:hover:text-ink',
+    ].join(' '),
+
+    ghost: [
+      'bg-transparent text-[var(--ink-2)] rounded-sm',
+      'hover:text-ink hover:bg-[var(--surface-2)]',
+      'disabled:opacity-40',
+    ].join(' '),
+
+    danger: [
+      'bg-[var(--fire)] text-white rounded-sm',
+      'hover:bg-[#FF5530] hover:-translate-y-px active:translate-y-0',
+      'disabled:opacity-40 disabled:hover:translate-y-0',
+    ].join(' '),
   };
 
   return (
     <button
       className={clsx(
-        baseClasses,
-        sizeClasses[size],
-        variantClasses[variant],
+        base,
+        sizes[size],
+        variants[variant],
         fullWidth && 'w-full',
-        loading && 'pointer-events-none opacity-70',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
+        (loading || disabled) && 'pointer-events-none',
         className
       )}
       disabled={disabled || loading}
       {...props}
     >
       {loading ? (
-        <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></span>
+        <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
       ) : (
         children
       )}

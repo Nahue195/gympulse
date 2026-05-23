@@ -9,30 +9,36 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, className, ...props }, ref) => {
+  ({ label, error, helperText, className, id, ...props }, ref) => {
+    const inputId = id ?? (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
+
     return (
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col gap-1.5 w-full">
         {label && (
-          <label className="text-sm font-medium text-white" htmlFor={props.id}>
+          <label
+            htmlFor={inputId}
+            className="text-xs font-condensed font-600 tracking-widest uppercase text-[var(--ink-2)]"
+          >
             {label}
           </label>
         )}
         <input
           ref={ref}
+          id={inputId}
           className={clsx(
-            'w-full px-4 py-3 text-base text-white bg-slate-800 border rounded-md transition-all',
-            'focus:outline-none placeholder:text-slate-400',
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            error
-              ? 'border-red-600 focus:border-red-600 focus:ring-4 focus:ring-red-600/20'
-              : 'border-slate-700 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20',
+            'gp-input',
+            error && '!border-[var(--fire)] focus:!border-[var(--fire)] focus:!shadow-[0_0_0_3px_var(--fire-dim)]',
             className
           )}
           {...props}
         />
-        {error && <span className="text-sm text-red-600">{error}</span>}
+        {error && (
+          <span className="text-xs text-[var(--fire)] font-condensed tracking-wide">
+            {error}
+          </span>
+        )}
         {helperText && !error && (
-          <span className="text-sm text-slate-400">{helperText}</span>
+          <span className="text-xs text-[var(--ink-3)]">{helperText}</span>
         )}
       </div>
     );
