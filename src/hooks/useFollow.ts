@@ -52,7 +52,7 @@ export function useFollow(targetUserId: string | undefined): UseFollowResult {
         .insert({
           follower_id: user.id,
           following_id: targetUserId
-        } as any);
+        });
 
       if (error) throw error;
       setIsFollowing(true);

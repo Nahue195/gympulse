@@ -59,7 +59,7 @@ export function Messages() {
         .single();
 
       if (userData) {
-        const userRecord = userData as any;
+        const userRecord = userData;
         const otherUser: User = {
           id: userRecord.id,
           displayName: userRecord.display_name,
@@ -93,10 +93,7 @@ export function Messages() {
   useEffect(() => {
     const convList = conversations as ConversationWithUser[];
     if (!isMobileView && convList.length > 0 && !selectedConversation) {
-      const existing = convList.find(c => c.id === selectedConversation?.id);
-      if (!existing) {
-        setSelectedConversation(convList[0]);
-      }
+      setSelectedConversation(convList[0]);
     }
   }, [conversations, isMobileView]);
 
@@ -135,7 +132,7 @@ export function Messages() {
             </div>
             <ConversationList
               conversations={conversations as ConversationWithUser[]}
-              selectedId={selectedConversation?.id}
+              selectedId={undefined}
               onSelect={handleSelectConversation}
               loading={loading}
             />

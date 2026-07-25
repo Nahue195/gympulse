@@ -24,7 +24,7 @@ export function useUnreadMessages() {
         return;
       }
 
-      const conversationIds = (convData as any[]).map(c => c.id);
+      const conversationIds = convData.map(c => c.id);
 
       // Count unread messages in those conversations
       const { count, error } = await supabase

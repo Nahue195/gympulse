@@ -51,7 +51,7 @@ export function PostCard({ post, onUpdate, compact = false }: PostCardProps) {
         await supabase.from('post_likes').insert({
           post_id: post.id,
           user_id: user.id
-        } as any);
+        });
         // Update likes_count in posts table
         await supabase
           .from('posts')

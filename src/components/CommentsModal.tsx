@@ -75,7 +75,7 @@ export function CommentsModal({ post, onClose, onUpdate }: CommentsModalProps) {
         post_id: post.id,
         user_id: user.id,
         comment_text: newComment.trim()
-      } as any);
+      });
 
       if (error) throw error;
 

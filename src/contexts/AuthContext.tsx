@@ -70,14 +70,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (data) {
-        const userData = data as any;
+        const userData = data;
         setUser({
           id: userData.id,
           displayName: userData.display_name,
           username: userData.username,
           avatarUrl: userData.avatar_url,
-          gymGoal: userData.gym_goal,
-          experienceLevel: userData.experience_level,
+          gymGoal: userData.gym_goal as User['gymGoal'],
+          experienceLevel: userData.experience_level as User['experienceLevel'],
           restTimerSeconds: userData.rest_timer_seconds ?? 90,
           trainingDays: userData.training_days ?? [1, 3, 5], // Default: Lun, Mié, Vie
           followersCount: userData.followers_count ?? 0,
@@ -169,7 +169,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (updates.trainingDays !== undefined) dbUpdates.training_days = updates.trainingDays;
 
       const { error } = await (supabase
-        .from('users') as any)
+        .from('users'))
         .update(dbUpdates)
         .eq('id', user.id);
 

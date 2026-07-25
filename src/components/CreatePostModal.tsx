@@ -143,7 +143,7 @@ export function CreatePostModal({ onClose, onPostCreated }: CreatePostModalProps
         post_type: postType,
         shared_workout_id: selectedWorkoutId,
         visibility: 'PUBLIC'
-      } as any);
+      });
 
       if (postError) throw postError;
 

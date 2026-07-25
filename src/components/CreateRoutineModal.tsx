@@ -107,7 +107,7 @@ export function CreateRoutineModal({ onClose, onCreated }: CreateRoutineModalPro
       setLoading(true);
 
       const { data: routineData, error: routineError } = await (supabase
-        .from('routines') as any)
+        .from('routines'))
         .insert({
           user_id: user.id,
           routine_name: routineName.trim(),
@@ -124,7 +124,7 @@ export function CreateRoutineModal({ onClose, onCreated }: CreateRoutineModalPro
 
       for (const day of days) {
         const { data: dayData, error: dayError } = await (supabase
-          .from('routine_days') as any)
+          .from('routine_days'))
           .insert({
             routine_id: routineData.id,
             day_number: day.dayNumber,
@@ -150,7 +150,7 @@ export function CreateRoutineModal({ onClose, onCreated }: CreateRoutineModalPro
           }));
 
           const { error: exercisesError } = await (supabase
-            .from('routine_exercises') as any)
+            .from('routine_exercises'))
             .insert(exercisesToInsert);
 
           if (exercisesError) throw exercisesError;

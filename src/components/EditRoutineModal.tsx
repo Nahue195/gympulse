@@ -260,7 +260,7 @@ export function EditRoutineModal({ routine, onClose, onUpdated }: EditRoutineMod
 
       // Actualizar información de la rutina
       const { error: routineError } = await (supabase
-        .from('routines') as any)
+        .from('routines'))
         .update({
           routine_name: routineName.trim(),
           description: description.trim() || null,
@@ -296,7 +296,7 @@ export function EditRoutineModal({ routine, onClose, onUpdated }: EditRoutineMod
         if (dayId) {
           // Actualizar día existente
           const { error: updateDayError } = await (supabase
-            .from('routine_days') as any)
+            .from('routine_days'))
             .update({
               day_number: day.dayNumber,
               day_name: day.dayName,
@@ -309,7 +309,7 @@ export function EditRoutineModal({ routine, onClose, onUpdated }: EditRoutineMod
         } else {
           // Crear nuevo día
           const { data: newDay, error: createDayError } = await (supabase
-            .from('routine_days') as any)
+            .from('routine_days'))
             .insert({
               routine_id: routine.id,
               day_number: day.dayNumber,
@@ -347,7 +347,7 @@ export function EditRoutineModal({ routine, onClose, onUpdated }: EditRoutineMod
           }));
 
           const { error: insertExError } = await (supabase
-            .from('routine_exercises') as any)
+            .from('routine_exercises'))
             .insert(exercisesToInsert);
 
           if (insertExError) throw insertExError;

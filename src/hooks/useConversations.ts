@@ -55,8 +55,8 @@ export function useConversations() {
               .neq('sender_id', user.id)
               .is('read_at', null);
 
-            const userRecord = userData as any;
-            const msgRecord = lastMsgData as any;
+            const userRecord = userData;
+            const msgRecord = lastMsgData;
 
             const otherUser: User = userRecord ? {
               id: userRecord.id,
@@ -133,7 +133,7 @@ export function useConversations() {
     if (!user) return null;
 
     try {
-      const { data, error } = await (supabase.rpc as any)('get_or_create_conversation', {
+      const { data, error } = await supabase.rpc('get_or_create_conversation', {
         p_user_1: user.id,
         p_user_2: otherUserId
       });

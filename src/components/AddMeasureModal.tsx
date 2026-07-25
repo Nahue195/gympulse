@@ -37,7 +37,7 @@ export function AddMeasureModal({ onClose, onAdded }: AddMeasureModalProps) {
     try {
       setLoading(true);
 
-      const { error } = await (supabase.from('measures') as any).insert({
+      const { error } = await (supabase.from('measures')).insert({
         user_id: user!.id,
         date: formData.date,
         weight_kg: parseFloat(formData.weightKg),

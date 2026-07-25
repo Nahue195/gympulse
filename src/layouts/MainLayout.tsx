@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { Dumbbell, BarChart3, Ruler, User, Users, Notebook, MessageCircle, Zap } from 'lucide-react';
+import { Dumbbell, BarChart3, Ruler, User, Users, Notebook, MessageCircle, Zap, Apple } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useUnreadMessages } from '../hooks/useUnreadMessages';
@@ -18,6 +18,7 @@ const desktopNavItems = [
   { to: '/rutinas',      label: 'Rutinas',       icon: Notebook    },
   { to: '/estadisticas', label: 'Estadísticas',  icon: BarChart3   },
   { to: '/medidas',      label: 'Medidas',       icon: Ruler       },
+  { to: '/nutricion',    label: 'Nutrición',     icon: Apple       },
   { to: '/comunidad',    label: 'Comunidad',     icon: Users       },
   { to: '/mensajes',     label: 'Mensajes',      icon: MessageCircle },
   { to: '/perfil',       label: 'Perfil',        icon: User        },

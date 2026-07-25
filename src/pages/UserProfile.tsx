@@ -45,14 +45,14 @@ export function UserProfile() {
         return;
       }
 
-      const userRecord = userData as any;
+      const userRecord = userData;
       const user: User = {
         id: userRecord.id,
         displayName: userRecord.display_name,
         username: userRecord.username,
         avatarUrl: userRecord.avatar_url,
-        gymGoal: userRecord.gym_goal,
-        experienceLevel: userRecord.experience_level,
+        gymGoal: userRecord.gym_goal as User['gymGoal'],
+        experienceLevel: userRecord.experience_level as User['experienceLevel'],
         followersCount: userRecord.followers_count ?? 0,
         followingCount: userRecord.following_count ?? 0,
         createdAt: userRecord.created_at

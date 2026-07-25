@@ -37,8 +37,9 @@ screenshots/
 # Old subfolder (legacy)
 gym-pulse/
 
-# Dev/setup scripts (one-time migrations, not needed in repo)
-*.sql
+# Loose root-level SQL scripts are ignored; the canonical, versioned
+# schema lives in supabase/ (migrations, seeds, diagnostics) and IS tracked.
+/*.sql
 CAMBIOS_REALIZADOS.md
 COMMUNITY_SETUP.md
 FIX_AUTHENTICATION.md

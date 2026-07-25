@@ -27,7 +27,7 @@ export function PublicRoutines() {
 
       // Load public routines
       const { data: routinesData, error } = await (supabase
-        .from('routines') as any)
+        .from('routines'))
         .select('*')
         .eq('visibility', 'PUBLIC')
         .eq('is_active', true)
@@ -40,7 +40,7 @@ export function PublicRoutines() {
       if (routinesData) {
         const userIds = [...new Set(routinesData.map((r: any) => r.user_id))];
         const { data: usersData } = await (supabase
-          .from('users') as any)
+          .from('users'))
           .select('id, display_name, username, avatar_url')
           .in('id', userIds);
 
@@ -142,7 +142,7 @@ export function PublicRoutines() {
       setCloning(true);
 
       // Call the clone function
-      const { error } = await (supabase.rpc as any)('clone_public_routine', {
+      const { error } = await supabase.rpc('clone_public_routine', {
         p_routine_id: selectedRoutine.id,
         p_user_id: user.id
       });

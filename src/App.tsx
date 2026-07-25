@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { MainLayout } from './layouts/MainLayout';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy load pages for code splitting
 const Auth = lazy(() => import('./pages/Auth').then(m => ({ default: m.Auth })));
@@ -10,6 +11,7 @@ const Routines = lazy(() => import('./pages/Routines').then(m => ({ default: m.R
 const PublicRoutines = lazy(() => import('./pages/PublicRoutines').then(m => ({ default: m.PublicRoutines })));
 const Statistics = lazy(() => import('./pages/Statistics').then(m => ({ default: m.Statistics })));
 const Measures = lazy(() => import('./pages/Measures').then(m => ({ default: m.Measures })));
+const Nutricion = lazy(() => import('./pages/Nutricion').then(m => ({ default: m.Nutricion })));
 const Community = lazy(() => import('./pages/Community').then(m => ({ default: m.Community })));
 const Profile = lazy(() => import('./pages/Profile').then(m => ({ default: m.Profile })));
 const UserProfile = lazy(() => import('./pages/UserProfile').then(m => ({ default: m.UserProfile })));
@@ -63,7 +65,8 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 
 function AppRoutes() {
   return (
-    <Suspense fallback={<PageLoader />}>
+    <ErrorBoundary>
+      <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route
           path="/auth"
@@ -86,13 +89,15 @@ function AppRoutes() {
           <Route path="rutinas/explorar" element={<PublicRoutines />} />
           <Route path="estadisticas" element={<Statistics />} />
           <Route path="medidas" element={<Measures />} />
+          <Route path="nutricion" element={<Nutricion />} />
           <Route path="comunidad" element={<Community />} />
           <Route path="mensajes" element={<Messages />} />
           <Route path="perfil" element={<Profile />} />
           <Route path="usuario/:username" element={<UserProfile />} />
         </Route>
       </Routes>
-    </Suspense>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

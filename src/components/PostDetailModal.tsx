@@ -25,7 +25,6 @@ export function PostDetailModal({
   onUpdate,
   currentIsLiked,
   currentLikesCount,
-  currentCommentsCount,
   onLikeChange,
   onCommentsCountChange
 }: PostDetailModalProps) {
@@ -119,7 +118,7 @@ export function PostDetailModal({
         await supabase.from('post_likes').insert({
           post_id: post.id,
           user_id: user.id
-        } as any);
+        });
         // Update likes_count in posts table
         await supabase
           .from('posts')
@@ -194,7 +193,7 @@ export function PostDetailModal({
         post_id: post.id,
         user_id: user.id,
         comment_text: newComment.trim()
-      } as any);
+      });
 
       if (error) throw error;
 

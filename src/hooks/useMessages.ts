@@ -97,7 +97,7 @@ export function useMessages(conversationId: string | null): UseMessagesResult {
           conversation_id: conversationId,
           sender_id: user.id,
           content: content.trim()
-        } as any);
+        });
 
       if (error) throw error;
       return true;
@@ -112,7 +112,7 @@ export function useMessages(conversationId: string | null): UseMessagesResult {
 
     try {
       await (supabase
-        .from('messages') as any)
+        .from('messages'))
         .update({ read_at: new Date().toISOString() })
         .eq('conversation_id', conversationId)
         .neq('sender_id', user.id)

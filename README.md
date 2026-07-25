@@ -15,13 +15,15 @@ Una aplicación moderna y responsive para tracking de entrenamientos en el gimna
 
 ## Stack tecnológico
 
-- **Frontend**: React 18 + TypeScript + Vite
+- **Frontend**: React 19 + TypeScript + Vite 7
 - **Backend**: Supabase (PostgreSQL + Auth + RLS)
-- **Estilos**: CSS custom con variables CSS
-- **Routing**: React Router v6
+- **Estilos**: Tailwind CSS + variables CSS (design system "Athletic Brutalism")
+- **Routing**: React Router v7
 - **Gráficos**: Recharts
 - **Iconos**: Lucide React
 - **Fechas**: date-fns
+- **Tests**: Vitest + Testing Library
+- **CI**: GitHub Actions (typecheck + tests + build)
 
 ## Estructura del proyecto
 
@@ -49,8 +51,9 @@ npm install
 
 1. Crea un proyecto en [supabase.com](https://supabase.com)
 2. Ve al **SQL Editor** en tu proyecto de Supabase
-3. Copia y pega el contenido del archivo `supabase-schema.sql`
-4. Ejecuta el script para crear todas las tablas, políticas RLS y datos iniciales
+3. Ejecutá las migraciones de `supabase/migrations/` **en orden alfabético**
+   (`0001` → `0005b` → … → `0014`) y luego los seeds de `supabase/seeds/`.
+   Ver [`supabase/README.md`](supabase/README.md) para el detalle.
 
 ### 3. Configurar variables de entorno
 
@@ -153,8 +156,12 @@ Los archivos optimizados se generarán en la carpeta `dist/`
 - **workout_entries**: Ejercicios dentro de cada workout
 - **measures**: Medidas corporales
 - **gym_checkins**: Asistencia diaria al gym
-- **routine_templates**: Plantillas de rutinas por día
-- **template_exercises**: Ejercicios dentro de plantillas
+- **routines / routine_days / routine_exercises**: Rutinas (programas), sus días y ejercicios
+- **posts / post_likes / post_comments / follows**: Comunidad y feed social
+- **conversations / messages / notifications**: Mensajería y notificaciones
+- **foods / meal_entries / meal_items / user_nutrition_goals**: Nutrición
+
+> El esquema completo y reproducible vive en `supabase/migrations/`.
 
 ### Seguridad (RLS)
 
@@ -165,24 +172,33 @@ Todas las tablas tienen políticas de Row Level Security configuradas:
 
 ## Próximas funcionalidades
 
-El proyecto está estructurado y listo para expandir con:
+Ya implementado:
 
-- [ ] Implementación completa del flujo de Training (workout builder)
-- [ ] Feed de comunidad interactivo
-- [ ] Gráficos de progreso personal
+- [x] Flujo completo de Training (workout builder)
+- [x] Feed de comunidad interactivo + mensajería
+- [x] Gráficos de progreso personal
+- [x] Notificaciones
+- [x] Seguimiento de nutrición (calorías + macros vs objetivos)
+
+Pendiente / ideas:
+
 - [ ] Sistema de PRs (personal records)
-- [ ] Cálculo de volumen de entrenamiento
+- [ ] Cálculo de volumen de entrenamiento por grupo muscular
+- [ ] Planes de comidas (meal plans — el schema ya existe)
 - [ ] Exportar datos a CSV
-- [ ] Notificaciones
-- [ ] Modo offline
+- [ ] Modo offline / PWA
 
 ## Scripts disponibles
 
 ```bash
-npm run dev          # Desarrollo
-npm run build        # Build para producción
-npm run preview      # Preview del build
-npm run lint         # Lint con ESLint
+npm run dev            # Desarrollo
+npm run build          # Build para producción
+npm run preview        # Preview del build
+npm run lint           # Lint con ESLint
+npm run typecheck      # Chequeo de tipos (tsc)
+npm run test           # Tests (Vitest)
+npm run test:watch     # Tests en watch
+npm run test:coverage  # Tests con cobertura
 ```
 
 ## Contribuir

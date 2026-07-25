@@ -135,7 +135,7 @@ export function Routines() {
 
   async function handleDuplicateRoutine(routine: RoutineWithDays) {
     try {
-      const { error } = await (supabase.rpc as any)('duplicate_routine', {
+      const { error } = await supabase.rpc('duplicate_routine', {
         p_routine_id: routine.id,
         p_new_name: `${routine.routineName} (Copia)`
       });
@@ -154,7 +154,7 @@ export function Routines() {
 
     try {
       const { error } = await (supabase
-        .from('routines') as any)
+        .from('routines'))
         .update({ visibility: newVisibility })
         .eq('id', routine.id);
 

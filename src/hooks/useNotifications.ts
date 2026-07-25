@@ -103,7 +103,7 @@ export function useNotifications() {
   const markAsRead = async (notificationId: string) => {
     try {
       const { error } = await (supabase
-        .from('notifications') as any)
+        .from('notifications'))
         .update({ is_read: true })
         .eq('id', notificationId);
 
@@ -123,7 +123,7 @@ export function useNotifications() {
 
     try {
       const { error } = await (supabase
-        .from('notifications') as any)
+        .from('notifications'))
         .update({ is_read: true })
         .eq('user_id', user.id)
         .eq('is_read', false);

@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, Zap, Calendar, Clock, TrendingUp, ChevronRight, History } from 'lucide-react';
-import { subDays, format, startOfWeek, differenceInDays, endOfWeek } from 'date-fns';
+import { subDays, format } from 'date-fns';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import type { RoutineWithDays, WorkoutSession, WorkoutSessionExercise, Workout } from '../types';
@@ -307,7 +307,7 @@ export function Training() {
 
       // Crear el workout
       const { data: workoutData, error: workoutError } = await (supabase
-        .from('workouts') as any)
+        .from('workouts'))
         .insert({
           user_id: user!.id,
           date: new Date().toISOString().split('T')[0],
@@ -349,7 +349,7 @@ export function Training() {
 
       if (entries.length > 0) {
         const { error: entriesError } = await (supabase
-          .from('workout_entries') as any)
+          .from('workout_entries'))
           .insert(entries);
 
         if (entriesError) throw entriesError;
@@ -357,7 +357,7 @@ export function Training() {
 
       // Crear check-in automático
       const { error: checkinError } = await (supabase
-        .from('gym_checkins') as any)
+        .from('gym_checkins'))
         .insert({
           user_id: user!.id,
           date: new Date().toISOString().split('T')[0],

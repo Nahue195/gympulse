@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { format, startOfWeek, addDays, isToday, isFuture, startOfDay, getDay } from 'date-fns';
+import { format, startOfWeek, addDays, isToday, isFuture, startOfDay } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 interface WeeklyTrackerProps {
@@ -46,7 +46,7 @@ export function WeeklyTracker({ workoutDates, trainingDays = [1, 3, 5] }: Weekly
     return { days, workoutCount };
   }, [workoutDates, trainingDays]);
 
-  const { days, workoutCount } = weekData;
+  const { days } = weekData;
 
   // Calcular estado de cada día
   const daysWithStatus = useMemo(() => {
