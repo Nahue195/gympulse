@@ -25,11 +25,12 @@ export interface MealGroup {
   totals: MacroTotals;
 }
 
-export const MEAL_ORDER: MealType[] = ['breakfast', 'lunch', 'dinner', 'snack'];
+export const MEAL_ORDER: MealType[] = ['breakfast', 'lunch', 'merienda', 'dinner', 'snack'];
 
 export const MEAL_LABELS: Record<MealType, string> = {
   breakfast: 'Desayuno',
   lunch: 'Almuerzo',
+  merienda: 'Merienda',
   dinner: 'Cena',
   snack: 'Snacks',
 };

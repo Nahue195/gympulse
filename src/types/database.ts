@@ -14,7 +14,7 @@ export type ReferenceType = 'post' | 'comment' | 'conversation' | 'follow'
 export type FoodCategory =
   | 'proteins' | 'carbs' | 'vegetables' | 'fruits' | 'dairy'
   | 'fats' | 'beverages' | 'snacks' | 'prepared' | 'other'
-export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack'
+export type MealType = 'breakfast' | 'lunch' | 'merienda' | 'dinner' | 'snack'
 export type DietType = 'balanced' | 'high_protein' | 'low_carb' | 'keto' | 'vegetarian' | 'vegan'
 
 export interface Database {
