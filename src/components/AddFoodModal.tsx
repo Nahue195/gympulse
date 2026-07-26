@@ -123,21 +123,31 @@ export function AddFoodModal({ mealType, onClose, onAdd }: Props) {
               return (
                 <button
                   key={food.id}
-                  onClick={() => setSelected(food)}
-                  className="w-full flex items-center justify-between px-3 py-2.5 text-left transition-colors"
+                  onClick={() => setSelected(isSel ? null : food)}
+                  className="w-full flex items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors"
                   style={{
                     borderRadius: '2px',
                     background: isSel ? 'var(--acid-dim)' : 'transparent',
                     borderLeft: isSel ? '2px solid var(--acid)' : '2px solid transparent',
                   }}
                 >
+                  {/* Nombre + porción */}
                   <div className="min-w-0">
                     <p className="text-sm font-500 truncate" style={{ color: 'var(--ink)' }}>{food.name}</p>
                     <p className="text-[11px]" style={{ color: 'var(--ink-3)' }}>
-                      {food.calories} kcal · {food.protein}P {food.carbs}C {food.fat}G · {food.serving_size}{food.serving_unit}
+                      {food.serving_size}{food.serving_unit}
                     </p>
                   </div>
-                  {isSel && <span className="text-[10px] font-700 uppercase tracking-wide" style={{ color: 'var(--acid)' }}>✓</span>}
+
+                  {/* Info nutricional (verde, a la derecha) */}
+                  <div className="flex-shrink-0 text-right leading-tight">
+                    <p className="text-sm font-700" style={{ color: 'var(--acid)' }}>
+                      {food.calories}<span className="text-[10px] font-500"> kcal</span>
+                    </p>
+                    <p className="text-[11px] font-600 tracking-tight" style={{ color: 'var(--acid)' }}>
+                      {food.protein}P · {food.carbs}C · {food.fat}G
+                    </p>
+                  </div>
                 </button>
               );
             })

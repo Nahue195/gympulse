@@ -44,7 +44,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 -- Proteinas vegetales
 ('Tofu firme', 'proteins', 100, 'g', 144, 17, 3, 9, false),
 ('Tempeh', 'proteins', 100, 'g', 192, 20, 8, 11, false),
-('Seitan', 'proteins', 100, 'g', 370, 75, 14, 2, false);
+('Seitan', 'proteins', 100, 'g', 370, 75, 14, 2, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- CARBOHIDRATOS
@@ -71,7 +72,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 -- Cereales
 ('Cereal de maiz', 'carbs', 30, 'g', 113, 2, 25, 0.4, 0.8, false),
 ('Granola', 'carbs', 40, 'g', 196, 4, 32, 7, 3.3, false),
-('Muesli', 'carbs', 40, 'g', 150, 4, 27, 3, 3, false);
+('Muesli', 'carbs', 40, 'g', 150, 4, 27, 3, 3, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- VEGETALES
@@ -97,7 +99,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Elote/Maiz', 'vegetables', 100, 'g', 96, 3.4, 21, 1.5, 2.4, false),
 ('Espárragos', 'vegetables', 100, 'g', 20, 2.2, 3.9, 0.1, 2.1, false),
 ('Repollo', 'vegetables', 100, 'g', 25, 1.3, 6, 0.1, 2.5, false),
-('Kale', 'vegetables', 100, 'g', 49, 4.3, 9, 0.9, 3.6, false);
+('Kale', 'vegetables', 100, 'g', 49, 4.3, 9, 0.9, 3.6, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- FRUTAS
@@ -119,7 +122,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Pera', 'fruits', 150, 'unidad', 85, 0.5, 23, 0.2, 4.7, 14.6, false),
 ('Durazno', 'fruits', 150, 'unidad', 58, 1.4, 14, 0.4, 2.3, 12.6, false),
 ('Mandarina', 'fruits', 80, 'unidad', 42, 0.6, 11, 0.2, 1.4, 8.5, false),
-('Cereza', 'fruits', 100, 'g', 63, 1.1, 16, 0.2, 2.1, 12.8, false);
+('Cereza', 'fruits', 100, 'g', 63, 1.1, 16, 0.2, 2.1, 12.8, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- LACTEOS
@@ -139,7 +143,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Queso oaxaca', 'dairy', 30, 'g', 90, 6, 1, 7, false),
 ('Queso crema', 'dairy', 30, 'g', 99, 1.7, 1.6, 10, false),
 ('Crema agria', 'dairy', 30, 'g', 60, 0.7, 1.2, 6, false),
-('Mantequilla', 'dairy', 10, 'g', 72, 0.1, 0, 8, false);
+('Mantequilla', 'dairy', 10, 'g', 72, 0.1, 0, 8, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- GRASAS Y ACEITES
@@ -157,7 +162,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Crema de cacahuate', 'fats', 30, 'g', 188, 8, 6, 16, false),
 ('Crema de almendras', 'fats', 30, 'g', 196, 6.7, 6, 18, false),
 ('Mayonesa', 'fats', 15, 'g', 94, 0.1, 0.1, 10, false),
-('Mayonesa light', 'fats', 15, 'g', 35, 0, 2, 3, false);
+('Mayonesa light', 'fats', 15, 'g', 35, 0, 2, 3, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- BEBIDAS
@@ -174,7 +180,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Bebida deportiva', 'beverages', 500, 'ml', 125, 0, 30, 0, 30, false),
 ('Leche de almendras', 'beverages', 250, 'ml', 39, 1.4, 3.4, 2.5, 2, false),
 ('Leche de avena', 'beverages', 250, 'ml', 120, 3, 16, 5, 7, false),
-('Leche de soya', 'beverages', 250, 'ml', 105, 6, 12, 3.5, 9, false);
+('Leche de soya', 'beverages', 250, 'ml', 105, 6, 12, 3.5, 9, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- SNACKS
@@ -190,7 +197,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Galletas Maria', 'snacks', 30, 'g', 130, 2, 22, 4, false),
 ('Frutos secos mixtos', 'snacks', 30, 'g', 173, 5, 8, 15, false),
 ('Proteina en polvo (whey)', 'snacks', 30, 'g', 120, 24, 3, 1.5, false),
-('Creatina', 'snacks', 5, 'g', 0, 0, 0, 0, false);
+('Creatina', 'snacks', 5, 'g', 0, 0, 0, 0, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- COMIDAS PREPARADAS
@@ -206,7 +214,8 @@ INSERT INTO foods (name, category, serving_size, serving_unit, calories, protein
 ('Sandwich de jamon y queso', 'prepared', 150, 'g', 352, 15, 30, 18, false),
 ('Sopa de pollo', 'prepared', 250, 'ml', 75, 6, 8, 2, false),
 ('Arroz con pollo', 'prepared', 250, 'g', 320, 20, 40, 8, false),
-('Pasta con salsa roja', 'prepared', 250, 'g', 280, 10, 45, 6, false);
+('Pasta con salsa roja', 'prepared', 250, 'g', 280, 10, 45, 6, false)
+ON CONFLICT (name) WHERE is_custom = false DO NOTHING;
 
 -- ==========================================
 -- VERIFICATION
