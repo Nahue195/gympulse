@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useUnreadMessages } from '../hooks/useUnreadMessages';
 import { NotificationBell } from '../components/NotificationBell';
+import { InstallPrompt } from '../components/InstallPrompt';
 
 const mobileNavItems = [
   { to: '/',             label: 'Entreno',  icon: Dumbbell  },
@@ -243,6 +244,9 @@ export function MainLayout() {
           </NavLink>
         ))}
       </nav>
+
+      {/* PWA: banner para instalar la app */}
+      <InstallPrompt />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 export { Button } from './Button';
 export { Card } from './Card';
 export { ErrorBoundary } from './ErrorBoundary';
+export { InstallPrompt } from './InstallPrompt';
 export { Input } from './Input';
 export { PostCard } from './PostCard';
 export { CreatePostModal } from './CreatePostModal';
