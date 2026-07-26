@@ -9,6 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['apple-touch-icon.png', 'favicon-64.png'],
+      // Permite probar la instalación también en `npm run dev`.
+      devOptions: { enabled: true, type: 'module' },
       manifest: {
         name: 'GymPulse',
         short_name: 'GymPulse',

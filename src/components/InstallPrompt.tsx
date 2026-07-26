@@ -34,11 +34,26 @@ export function InstallPrompt() {
   useEffect(() => {
     if (isStandalone() || localStorage.getItem(DISMISS_KEY)) return;
 
+    const win = window as unknown as { __deferredInstallPrompt?: BeforeInstallPromptEvent };
+
+    const showFromStash = () => {
+      if (win.__deferredInstallPrompt) {
+        setDeferred(win.__deferredInstallPrompt);
+        setVisible(true);
+      }
+    };
+
+    // 1) El evento pudo dispararse ANTES de montar (capturado en main.tsx).
+    showFromStash();
+
+    // 2) …o dispararse después: escuchamos ambos canales.
+    const onInstallable = () => showFromStash();
     const onPrompt = (e: Event) => {
       e.preventDefault();
       setDeferred(e as BeforeInstallPromptEvent);
       setVisible(true);
     };
+    window.addEventListener('pwa-installable', onInstallable);
     window.addEventListener('beforeinstallprompt', onPrompt);
 
     const onInstalled = () => setVisible(false);
@@ -48,6 +63,7 @@ export function InstallPrompt() {
     if (isIOS()) setVisible(true);
 
     return () => {
+      window.removeEventListener('pwa-installable', onInstallable);
       window.removeEventListener('beforeinstallprompt', onPrompt);
       window.removeEventListener('appinstalled', onInstalled);
     };
